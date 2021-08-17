@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whoami-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: whoami-app
+  template:
+    metadata:
+      labels:
+        app: whoami-app
+    spec:
+      containers:
+        - name: whoami
+          image: traefik/whoami
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whoami-service
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    app: whoami-app
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /testpath
+        pathType: Prefix
+        backend:
+          service:
+            name: whoami-service
+            port:
+              number: 80
