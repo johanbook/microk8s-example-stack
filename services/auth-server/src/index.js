@@ -6,7 +6,7 @@ const PORT = 80;
 const app = express();
 app.use(logger("tiny"));
 app.use((req, res) => {
-  const userId = req.headers["x-user-id"];
-  res.send(`You have reached the target server ${userId}`);
+  res.set("x-user-id", "00abc123");
+  res.sendStatus(200);
 });
 app.listen(PORT);
