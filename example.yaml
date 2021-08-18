@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
         - name: whoami
-          image: traefik/whoami
+          image: target-server:test
+          imagePullPolicy: IfNotPresent
 ---
 apiVersion: v1
 kind: Service
