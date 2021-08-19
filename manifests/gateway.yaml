@@ -1,0 +1,32 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: auth-middleware
+spec:
+  forwardAuth:
+    address: http://auth-service
+    authResponseHeaders: ["x-user-id"]
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: simpleingressroute
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: target-service
+      port: 80
+    middlewares:
+    - name: auth-middleware
+  - match: PathPrefix(`/login`)
+    kind: Rule
+    services:
+    - name: auth-service
+      port: 80
