@@ -24,7 +24,7 @@ metadata:
   name: auth-service
 spec:
   ports:
-  - port: 80
-    protocol: TCP
+    - port: 80
+      protocol: TCP
   selector:
     app: auth-app

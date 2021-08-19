@@ -17,6 +17,13 @@ spec:
         - name: target
           image: target-server:test
           imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: persaukinen
+              mountPath: /persaukinen
+      volumes:
+        - name: persaukinen
+          hostPath:
+            path: /home/book/tmp/
 ---
 apiVersion: v1
 kind: Service
@@ -24,7 +31,7 @@ metadata:
   name: target-service
 spec:
   ports:
-  - port: 80
-    protocol: TCP
+    - port: 80
+      protocol: TCP
   selector:
     app: target-app

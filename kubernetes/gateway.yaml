@@ -7,19 +7,19 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-auth: /
 spec:
   rules:
-  - http:
-      paths:
-      - path: /login
-        pathType: Prefix
-        backend:
-          service:
-            name: auth-service
-            port:
-              number: 80
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: target-service
-            port:
-              number: 80
+    - http:
+        paths:
+          - path: /login
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: target-service
+                port:
+                  number: 80
