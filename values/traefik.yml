@@ -1,2 +1,10 @@
+additionalArguments:
+  # Workaround to add request correlation id.
+  # See https://github.com/traefik/traefik/issues/4640#
+  - "--tracing.jaeger=true"
+  - "--tracing.jaeger.samplingParam=0"
+  - "--tracing.jaeger.traceContextHeaderName=X-Request-ID"
+
+
 service:
   type: ClusterIP
