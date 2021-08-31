@@ -1,8 +1,8 @@
 # microk8s-example-stack
 
-This is a PoC for a microk8s stack using Traefik IngressRoute as ingress
-controller. Traefik's `forwardAuth` middleware is used to emulate global
-authentication (although a static response is returned, see
+This is a PoC for a microk8s stack using both Traefik's IngressRoute and NGINX
+as ingress controllers. Traefik's `forwardAuth` middleware is used to emulate
+global authentication (although a static response is returned, see
 `services/auth-server`).
 
 ## Installing
@@ -16,5 +16,4 @@ make build
 make update
 ```
 
-Finally, to access the Traefik service, use `make proxy`. This will dynamically
-allocate a port on localhost where the edge router is exposed.
+The cluster is available on `localhost`.

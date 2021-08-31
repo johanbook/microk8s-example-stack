@@ -14,7 +14,7 @@ build:
 install:
 	microk8s helm3 repo add traefik https://helm.traefik.io/traefik
 	microk8s helm3 repo update
-	microk8s helm3 install traefik traefik/traefik
+	microk8s helm3 install traefik traefik/traefik -f values/traefik.yml
 
 # Create a proxy to Traefik service
 proxy:
@@ -29,11 +29,11 @@ shutdown:
 # Start the cluster (duh)
 start:
 	microk8s start
-	microk8s enable dashboard dns helm3 registry
+	microk8s enable dashboard dns ingress helm3 registry
 
 # Create external load balancer
 start-metallb:
-	microk8s enable metallb:192.168.1.105-192.168.1.120
+	microk8s enable metallb:192.168.1.205-192.168.1.220
 
 # Get access token to microk8s dashboard
 token:
