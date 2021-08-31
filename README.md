@@ -1,7 +1,9 @@
 # microk8s-example-stack
 
 This is a PoC for a microk8s stack using Traefik IngressRoute as ingress
-controller.
+controller. Traefik's `forwardAuth` middleware is used to emulate global
+authentication (although a static response is returned, see
+`services/auth-server`).
 
 ## Installing
 
