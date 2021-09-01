@@ -1,0 +1,28 @@
+loki:
+  enabled: true
+  persistence:
+    # Just enablig this will cause the loki pod to be stuck
+    # in pending
+    enabled: false
+    # storageClassName: standard
+    # size: 5Gi
+
+promtail:
+  enabled: true
+
+prometheus:
+  enabled: true
+  alertmanager:
+    persistentVolume:
+      enabled: false
+  server:
+    persistentVolume:
+      enabled: false
+
+grafana:
+  enabled: true
+  sidecar:
+    datasources:
+      enabled: true
+  image:
+    tag: 7.5.0

@@ -15,8 +15,8 @@ install:
 	microk8s helm3 repo add grafana https://grafana.github.io/helm-charts
 	microk8s helm3 repo add traefik https://helm.traefik.io/traefik
 	microk8s helm3 repo update
-	microk8s helm3 install traefik traefik/traefik -f values/traefik.yml
-	microk8s helm3 install loki grafana/loki-stack
+	microk8s helm3 install traefik traefik/traefik -f values/traefik.yaml
+	microk8s helm3 install loki grafana/loki-stack -f values/loki-stack.yaml
 
 # Create a proxy to Traefik service
 proxy:
