@@ -28,3 +28,16 @@ spec:
       protocol: TCP
   selector:
     app: whoami
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: whoami
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: whoami
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
