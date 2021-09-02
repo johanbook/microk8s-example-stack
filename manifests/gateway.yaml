@@ -30,3 +30,10 @@ spec:
     services:
     - name: auth-service
       port: 80
+  - match: PathPrefix(`/whoami`)
+    kind: Rule
+    services:
+    - name: whoami
+      port: 80
+    middlewares:
+    - name: auth-middleware
